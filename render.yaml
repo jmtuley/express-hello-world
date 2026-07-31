@@ -13,6 +13,13 @@ projects:
               - key: NODE_ENV
                 value: production
               - fromGroup: hello-settings
+        envVarGroups:
+          - name: hello-settings
+            envVars:
+              - key: GREETING
+                value: hello
+      - name: production
+         services:
           - type: workflow
             name: hello-workflow
             runtime: node
@@ -22,9 +29,3 @@ projects:
             startCommand: npm start
             envVars:
               - fromGroup: hello-settings
-        envVarGroups:
-          - name: hello-settings
-            envVars:
-              - key: GREETING
-                value: hello
-      - name: production
