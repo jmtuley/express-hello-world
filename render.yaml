@@ -19,13 +19,13 @@ projects:
               - key: GREETING
                 value: hello
       - name: production
-         services:
-          - type: workflow
-            name: hello-workflow
-            runtime: node
-            region: oregon
-            repo: https://github.com/jmtuley/workflows-demo
-            buildCommand: npm install
-            startCommand: npm start
-            envVars:
-              - fromGroup: hello-settings
+        services:
+        - type: workflow
+          name: hello-workflow
+          runtime: node
+          region: oregon
+          repo: https://github.com/jmtuley/workflows-demo
+          buildCommand: npm install
+          startCommand: npm start
+          envVars:
+            - fromGroup: hello-settings
