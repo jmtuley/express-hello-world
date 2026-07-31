@@ -2,18 +2,17 @@ projects:
   - name: wor-1476-demo
     environments:
       - name: staging
-        services:
-          - type: web
-            name: hello-web
-            runtime: node
-            plan: free
-            buildCommand: yarn install --frozen-lockfilenpm install
-            startCommand: node app.js
-            envVars:
-              - key: NODE_ENV
-                value: production
       - name: production
         services:
+        - type: web
+          name: hello-web
+          runtime: node
+          plan: free
+          buildCommand: yarn install --frozen-lockfilenpm install
+          startCommand: node app.js
+          envVars:
+            - key: NODE_ENV
+              value: production
         - type: workflow
           name: hello-workflow
           runtime: node
