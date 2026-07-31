@@ -1,10 +1,30 @@
-services:
-  - type: web
-    name: express-hello-world
-    runtime: node
-    plan: free
-    buildCommand: yarn install --frozen-lockfile
-    startCommand: node app.js
-    envVars:
-      - key: NODE_ENV
-        value: production
+projects:
+  - name: wor-1476-demo
+    environments:
+      - name: staging
+        services:
+          - type: web
+            name: hello-web
+            runtime: node
+            plan: free
+            buildCommand: yarn install --frozen-lockfilenpm install
+            startCommand: node app.js
+            envVars:
+              - key: NODE_ENV
+                value: production
+              - fromGroup: hello-settings
+          - type: workflow
+            name: hello-workflow
+            runtime: node
+            region: oregon
+            repo: https://github.com/jmtuley/workflows-demo
+            buildCommand: npm install
+            startCommand: npm start
+            envVars:
+              - fromGroup: hello-settings
+        envVarGroups:
+          - name: hello-settings
+            envVars:
+              - key: GREETING
+                value: hello
+      - name: production
